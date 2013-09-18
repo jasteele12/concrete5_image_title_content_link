@@ -97,6 +97,14 @@ Loader::element('editor_config');
             <?php  echo $al->file('file_fID', 'file_fID', 'Choose File', $file); ?>
             </div>
         </div>
+
+		<div class="control-group">
+        <?php  echo $form->label('link_target', t('Link Target')); ?>
+            <div class="controls">
+            <?php  echo $form->text('link_target', $link_target, array('style'=>'width:98%;')); ?>
+            </div>
+        </div>
+
 	</div>
     
     

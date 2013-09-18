@@ -15,6 +15,7 @@
 		<field name="file_fID" type="I"></field>
 		<field name="link_url" type="C" size="255"></field>
 		<field name="link_text" type="C" size="255"></field>
+		<field name="link_target" type="C" size="255"></field>
 		
 		<field name="style" type="C" size="255"></field>
 		<field name="css_class" type="C" size="255"></field>

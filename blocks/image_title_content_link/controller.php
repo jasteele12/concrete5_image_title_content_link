@@ -54,7 +54,7 @@ class ImageTitleContentLinkBlockController extends BlockController {
 			$link_class = 'file-'.$file->getExtension();
 			$link_text = empty($link_text) ? $file->getFileName() : htmlentities($this->link_text, ENT_QUOTES, APP_CHARSET);
 		}else if (!empty($this->link_url)){
-			$link_url = $this->controller->valid_url($this->link_url);
+			$link_url = $this->valid_url($this->link_url);
 			$link_text = empty($this->link_text) ? $this->link_url : htmlentities($this->link_text, ENT_QUOTES, APP_CHARSET);
 		}
 
@@ -85,10 +85,11 @@ class ImageTitleContentLinkBlockController extends BlockController {
 		$args['content'] = $this->translateTo($args['content']);
 		$args['link_cID'] = empty($args['link_cID']) ? NULL : $args['link_cID'];
 		$args['file_fID'] = empty($args['file_fID']) ? NULL : $args['file_fID'];
+		$args['link_target'] = empty($args['link_target']) ? NULL : $args['link_target'];
+		$args['link_url'] = empty($args['link_url']) ? NULL : $args['link_url'];		
 		$args['style'] = empty($args['style']) ? NULL : $args['style'];
 		$args['css_class'] = empty($args['css_class']) ? NULL : $args['css_class'];
 		
-	
 		parent::save($args);
 		
 		if(!empty($args['template'])){
@@ -123,7 +124,7 @@ class ImageTitleContentLinkBlockController extends BlockController {
 	
 	//Helper function for external URLs
 	public function valid_url($url) {
-		if ((strpos($url, 'http') === 0) || (strpos($url, 'mailto') === 0)) {
+		if ((strpos($url, 'http') === 0) || (strpos($url, 'mailto') === 0) || (strpos($url, '#') === 0)) {
 			return $url;
 		} else if (strpos($url, '@') !== false) {
 			return 'mailto:' . $url;
