@@ -47,12 +47,12 @@ class ImageTitleContentLinkBlockController extends BlockController {
 			$link_page = Page::getByID($this->link_cID);
 			$this->set('link_page', $link_page);
 			$link_url = $nh->getLinkToCollection($link_page, true);
-			$link_text = empty($link_text) ? $link_url : htmlentities($link_text, ENT_QUOTES, APP_CHARSET);
+			$link_text = empty($this->link_text) ? $link_url : htmlentities($this->link_text, ENT_QUOTES, APP_CHARSET);
 		
 		}else if (!empty($this->file_fID)){
 			$link_url = View::url('/download_file', $this->file_fID, Page::getCurrentPage()->getCollectionID());
 			$link_class = 'file-'.$file->getExtension();
-			$link_text = empty($link_text) ? $file->getFileName() : htmlentities($this->link_text, ENT_QUOTES, APP_CHARSET);
+			$link_text = empty($this->link_text) ? $file->getFileName() : htmlentities($this->link_text, ENT_QUOTES, APP_CHARSET);
 		}else if (!empty($this->link_url)){
 			$link_url = $this->valid_url($this->link_url);
 			$link_text = empty($this->link_text) ? $this->link_url : htmlentities($this->link_text, ENT_QUOTES, APP_CHARSET);

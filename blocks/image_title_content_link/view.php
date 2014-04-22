@@ -36,16 +36,15 @@ $nh = Loader::helper('navigation');
             </div>
         <?php  endif; ?>
         
-        <?php  if (!empty($link_cID)):
+        <?php if (!empty($link_cID)):
             $link_url = $nh->getLinkToCollection(Page::getByID($link_cID), true);
             $link_text = empty($link_text) ? $link_url : htmlentities($link_text, ENT_QUOTES, APP_CHARSET);
             ?>
             <div class="link page">
             <a href="<?php  echo $link_url; ?>"><?php  echo $link_text; ?></a>
             </div>
-        <?php  endif; ?>
         
-        <?php  if (!empty($file)):
+        <?php elseif (!empty($file)):
             $link_url = View::url('/download_file', $file_fID, Page::getCurrentPage()->getCollectionID());
             $link_class = 'file-'.$file->getExtension();
             $link_text = empty($link_text) ? $file->getFileName() : htmlentities($link_text, ENT_QUOTES, APP_CHARSET);
@@ -53,10 +52,8 @@ $nh = Loader::helper('navigation');
             <div class="link file">
                 <a href="<?php  echo $link_url; ?>" class="<?php  echo $link_class; ?>"><?php  echo $link_text; ?></a>
             </div>
-            
-        <?php  endif; ?>
         
-        <?php  if (!empty($link_url)):
+        <?php elseif (!empty($link_url)):
             $link_url = $this->controller->valid_url($link_url);
             $link_text = empty($link_text) ? $link_url : htmlentities($link_text, ENT_QUOTES, APP_CHARSET);
             ?>
